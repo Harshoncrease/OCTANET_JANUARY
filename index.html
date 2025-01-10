@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Gem - Discover Your Next Adventure</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            line-height: 1.6;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/3918841-SnqC7pkstPtsLLIVQ6MOCMDgA8cbTi.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+        }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        header {
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        header.scrolled {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+        }
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 1rem;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+        .search-container {
+            position: relative;
+            max-width: 500px;
+            width: 100%;
+        }
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .search-button {
+            position: absolute;
+            right: 5px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #ff6b6b;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .search-button:hover {
+            background-color: #ff5252;
+        }
+        .dropdown {
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            max-height: 200px;
+            overflow-y: auto;
+            display: none; /* Hide by default */
+            z-index: 1000;
+            width: 100%;
+        }
+        .dropdown-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .dropdown-item:hover {
+            background-color: #f0f0f0; /* Change color on hover */
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero p {
+                font-size: 1rem;
+            }
+        }
+        .features {
+            padding: 4rem 0;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .feature-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .feature {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1rem;
+            flex: 1 1 calc(30% - 2rem); /* 3 features per row */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        .feature h3 {
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+        .feature p {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="overlay"></div>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Local Gem</a>
+                <ul class="nav-links">
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>Discover Your Next Adventure</h1>
+            <p>Uncover hidden gems and local treasures in tropical paradises across the globe.</p>
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search for cities or attractions...">
+                <button class="search-button">Explore</button>
+                <div id="dropdown" class="dropdown"></div> <!-- Dropdown for search results -->
+            </div>
+        </section>
+
+        <section id="features" class="features">
+            <div class="container">
+                <h2>Why Choose Local Gem</h2>
+                <div class="feature-grid">
+                    <div class="feature">
+                        <h3>Local Insights</h3>
+                        <p>Get insider tips and recommendations from locals who know their paradise best.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Budget-Friendly</h3>
+                        <p>Find amazing experiences that won't break the bank, perfect for any budget.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Personalized Itineraries</h3>
+                        <p>Create custom travel plans tailored to your tropical adventure preferences.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <a href="index.html" class="back-button">Back to Home</a>
+
+
+    <script>
+        const searchInput = document.querySelector('.search-input');
+        const dropdown = document.getElementById('dropdown');
+
+        // Predefined suggestions
+        const suggestions = [ "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", 
+        "Chhattisgarh", "Goa", "Gujarat", "Haryana", 
+        "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", 
+        "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", 
+        "Mizoram", "Nagaland", "Odisha", "Punjab", 
+        "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", 
+        "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal","Majuli"];
+
+        // This function will run when you type in the search box
+        searchInput.addEventListener('input', fetchSuggestions);
+
+        function fetchSuggestions() {
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            dropdown.innerHTML = ''; // Clear existing items
+            if (searchTerm) {
+                // Filter suggestions based on the input
+                const filteredSuggestions = suggestions.filter(item => item.toLowerCase().includes(searchTerm));
+                
+                filteredSuggestions.forEach(item => {
+                    const div = document.createElement('div');
+                    div.className = 'dropdown-item';
+                    div.textContent = item; // Name of the attraction
+                    dropdown.appendChild(div);
+                });
+                dropdown.style.display = filteredSuggestions.length ? 'block' : 'none'; // Show if there are items
+            } else {
+                dropdown.style.display = 'none'; // Hide if no search term
+            }
+        }
+
+        // Handle clicks on dropdown items
+      // Handle clicks on dropdown items
+dropdown.addEventListener('click', (event) => {
+    if (event.target.classList.contains('dropdown-item')) {
+        const selectedItem = event.target.textContent; // Get the name clicked
+
+        // Redirect based on the selected item
+        if (selectedItem === 'Andhra Pradesh') {
+            window.location.href = 'ap.html';
+        } else if (selectedItem === 'Arunachal Pradesh') {
+            window.location.href = 'arunachal.html';
+        } else if (selectedItem === 'Assam') {
+            window.location.href = 'assam.html';
+        } else if (selectedItem === 'Bihar') {
+            window.location.href = 'bihar.html';
+        } else if (selectedItem === 'Chhattisgarh') {
+            window.location.href = 'chhattisgarh.html';
+        } else if (selectedItem === 'Goa') {
+            window.location.href = 'goa.html';
+        } else if (selectedItem === 'Gujarat') {
+            window.location.href = 'gujarat.html';
+        } else if (selectedItem === 'Haryana') {
+            window.location.href = 'haryana.html';
+        } else if (selectedItem === 'Himachal Pradesh') {
+            window.location.href = 'himachal.html';
+        } else if (selectedItem === 'Jharkhand') {
+            window.location.href = 'jharkhand.html';
+        } else if (selectedItem === 'Karnataka') {
+            window.location.href = 'karnataka.html';
+        } else if (selectedItem === 'Kerala') {
+            window.location.href = 'ker.html';
+        } else if (selectedItem === 'Madhya Pradesh') {
+            window.location.href = 'mp.html';
+        } else if (selectedItem === 'Maharashtra') {
+            window.location.href = 'maha.html';
+        } else if (selectedItem === 'Manipur') {
+            window.location.href = 'manipur.html';
+        } else if (selectedItem === 'Meghalaya') {
+            window.location.href = 'meghalaya.html';
+        } else if (selectedItem === 'Mizoram') {
+            window.location.href = 'mizoram.html';
+        } else if (selectedItem === 'Nagaland') {
+            window.location.href = 'nagaland.html';
+        } else if (selectedItem === 'Odisha') {
+            window.location.href = 'odisha.html';
+        } else if (selectedItem === 'Punjab') {
+            window.location.href = 'punjab.html';
+        } else if (selectedItem === 'Rajasthan') {
+            window.location.href = 'rajasthan.html';
+        } else if (selectedItem === 'Majuli') {
+            window.location.href = 'maj.html';
+        } else if (selectedItem === 'Tamil Nadu') {
+            window.location.href = 'tamilnadu.html';
+        } else if (selectedItem === 'Telangana') {
+            window.location.href = 'telangana.html';
+        } else if (selectedItem === 'Tripura') {
+            window.location.href = 'tripura.html';
+        } else if (selectedItem === 'Uttar Pradesh') {
+            window.location.href = 'up.html';
+        } else if (selectedItem === 'Uttarakhand') {
+            window.location.href = 'uttarakhand.html';
+        } else if (selectedItem === 'West Bengal') {
+            window.location.href = 'wb.html';
+        } else {
+            searchInput.value = selectedItem; // Fill the input with selected name
+            dropdown.style.display = 'none'; // Hide dropdown
+        }
+    }
+});
+
+
+        // Hide dropdown on input blur
+        searchInput.addEventListener('blur', () => {
+            setTimeout(() => {
+                dropdown.style.display = 'none';
+            }, 200);
+        });
+
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            header.classList.toggle('scrolled', window.scrollY > 0);
+        });
+    </script>
+</body>
+</html>

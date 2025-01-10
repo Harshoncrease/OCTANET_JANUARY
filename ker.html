@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerala - Local Gem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body, html {
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+            line-height: 1.6;
+            height: 100%;
+            overflow: hidden;
+        }
+        body {
+            background-image: url('https://hebbkx1anhila5yf.public.blob.vercel-storage.com/kerala-qAg6OnNu16mpgxQSc0WLPAKcnwR3ew.jpeg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            overflow-y: auto;
+        }
+        .header {
+            padding: 2rem;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .content {
+            padding: 2rem;
+            max-width: 800px;
+            margin: 2rem auto;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .content h2 {
+            margin-bottom: 1rem;
+            color: #ff6b6b;
+        }
+        .content p, .content ul {
+            margin-bottom: 1rem;
+        }
+        .content ul {
+            padding-left: 2rem;
+        }
+        .button-container {
+            margin-top: 1.5rem;
+        }
+        .back-button, .plan-button {
+            display: inline-block;
+            padding: 0.7rem 1.5rem;
+            background-color: #ff6b6b;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-weight: bold;
+            margin-right: 1rem; /* Space between buttons */
+        }
+        .back-button:hover, .plan-button:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+        .place-link {
+            color: #ff6b6b;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .place-link:hover {
+            color: #ff5252;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <header class="header">
+            <h1>Kerala</h1>
+            <p>Embrace the natural beauty and traditions of Kerala!</p>
+        </header>
+
+        <main class="content">
+            <h2>About Kerala</h2>
+            <p>Kerala is located in the southern part of India, known for its lush greenery, backwaters, and unique culture.</p>
+
+            <h2>Attractions</h2>
+            <p>Top attractions in Kerala include:</p>
+            <ul>
+                <li><span class="place-link" onclick="window.open('https://shorturl.at/xiRMr', '_blank');">Alleppey Backwaters</span></li>
+                <li><span class="place-link" onclick="window.open('https://shorturl.at/kzZlT', '_blank');">Munnar Hill Station</span></li>
+                <li><span class="place-link" onclick="window.open('https://goo.gl/maps/e7d9fpTnBgr', '_blank');">Fort Kochi</span></li>
+                <li><span class="place-link" onclick="window.open('https://goo.gl/maps/J8HdGHVzdNK2', '_blank');">Wayanad Wildlife Sanctuary</span></li>
+                <li><span class="place-link" onclick="window.open('https://goo.gl/maps/4bd8R1zwiP62', '_blank');">Thekkady (Periyar National Park)</span></li>
+            </ul>
+
+            <h2>Cuisine</h2>
+            <p>Kerala's cuisine is famous for its seafood and coconut-based dishes. Popular dishes include:</p>
+            <ul>
+                <li>Appam and Stew</li>
+                <li>Puttu and Kadala Curry</li>
+                <li>Fish Curry</li>
+                <li>Karimeen Pollichathu</li>
+                <li>Payasam</li>
+            </ul>
+
+            <div class="button-container">
+                <a href="index.html" class="back-button">Back to Home</a>
+                <a href="#" class="plan-button">Plan Your Trip</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
